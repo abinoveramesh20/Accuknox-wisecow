@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-SRVPORT=4499
+SRVPORT=80
 RSPFILE=response
 
 rm -f $RSPFILE
