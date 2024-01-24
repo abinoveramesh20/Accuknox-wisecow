@@ -1,18 +1,20 @@
-
-# Use Alpine Linux as the base image
+# Use a base image with the desired Linux distribution
 FROM alpine:latest
 
-# Set the working directory
-WORKDIR /wisecow
+# Set the working directory inside the container
+WORKDIR /app
 
-# Copy the application code into the container
-COPY . .
+# Install necessary packages (cowsay and fortune) using the package manager of the base image
+RUN apk add --no-cache fortune cowsay netcat-openbsd
 
-# Install perl and fortune
-RUN apk add --no-cache perl fortune
+# Copy the Wisecow script into the container
+COPY wisecow.sh /app/wisecow.sh
 
-# Expose the port used by the application
+# Set execute permissions on the script
+RUN chmod +x /app/wisecow.sh
+
+# Expose the port that the application listens on
 EXPOSE 4499
 
-# Define the entry point command
-CMD ["./wisecow.sh"]
+# Define the command to run when the container starts
+CMD ["/app/wisecow.sh"]
