@@ -4,8 +4,8 @@ FROM alpine:latest
 # Set the working directory inside the container
 WORKDIR /app
 
-# Install necessary packages (cowsay and fortune) using the package manager of the base image
-RUN apk add --no-cache fortune cowsay netcat-openbsd
+# Enable the community repository and install necessary packages (cowsay and fortune)
+RUN apk update && apk add --no-cache fortune cowsay@community netcat-openbsd
 
 # Copy the Wisecow script into the container
 COPY wisecow.sh /app/wisecow.sh
