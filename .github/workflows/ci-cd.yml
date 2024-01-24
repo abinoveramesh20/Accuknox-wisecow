@@ -1,0 +1,42 @@
+name: CI/CD for Wisecow Application
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    env:
+      REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
+      REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Login to Container Registry
+      run: docker login -u $REGISTRY_USERNAME -p $REGISTRY_PASSWORD your-container-registry
+
+    - name: Build and Push Docker Image
+      run: |
+        docker build -t your-container-registry/your-repo:latest .
+        docker push your-container-registry/your-repo:latest
+
+  deploy-to-kubernetes:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+
+    env:
+      KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Deploy to Kubernetes
+      run: kubectl apply -f path/to/wisecow-deployment.yaml -f path/to/wisecow-service.yaml
+      env:
+        KUBE_CONFIG_DATA: $KUBE_CONFIG_DATA
