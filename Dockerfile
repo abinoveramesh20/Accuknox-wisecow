@@ -1,17 +1,20 @@
-# Use Alpine Linux as the base image
+# Use a lightweight base image
 FROM alpine:latest
 
+# Install necessary packages
+RUN apk --no-cache add netcat-openbsd fortune cowsay
+
 # Set the working directory
-WORKDIR /wisecow
+WORKDIR /app
 
-# Copy the application code into the container
-COPY . .
+# Copy the script into the container
+COPY wisecow.sh /app/wisecow.sh
 
-# Install perl and fortune
-RUN apk add --no-cache perl fortune
+# Make the script executable
+RUN chmod +x /app/wisecow.sh
 
 # Expose the port used by the application
 EXPOSE 4499
 
-# Define the entry point command
-CMD ["./wisecow.sh"]
+# Run the application
+CMD ["/app/wisecow.sh"]
