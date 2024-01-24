@@ -1,5 +1,5 @@
 # Use a base image with Bash
-FROM bash:latest
+FROM alpine:latest
 
 # Install required packages
 RUN apk --no-cache add netcat-openbsd fortune cowsay
@@ -24,4 +24,4 @@ EXPOSE $SRVPORT
 WORKDIR /
 
 # Run the script when the container starts
-CMD ["/bin/bash", "/wisecow.sh"]
+CMD ["/bin/sh", "/wisecow.sh"]
