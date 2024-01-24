@@ -2,7 +2,9 @@
 FROM alpine:latest
 
 # Install required packages
-RUN apk --no-cache add netcat-openbsd fortune cowsay
+RUN apk --no-cache add netcat-openbsd
+RUN apk --no-cache add fortune
+RUN apk --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/community/ add cowsay
 
 # Set the working directory
 WORKDIR /app
@@ -18,4 +20,3 @@ EXPOSE 4499
 
 # Run the application when the container starts
 CMD ["/app/wisecow.sh"]
-
