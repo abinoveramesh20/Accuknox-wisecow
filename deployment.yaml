@@ -16,5 +16,5 @@ spec:
       - name: wisecow
         image: wisecow-image:latest
         ports:
-        - containerPort: 4499
+        - containerPort: 80
         command: ["/bin/bash", "-c", "/app/wisecow.sh"]  # Assuming the script is at /app/wisecow.sh
