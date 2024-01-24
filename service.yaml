@@ -9,4 +9,4 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 4499
-  type: LoadBalancer  # Change to NodePort or ClusterIP based on your requirements
+  type: LoadBalancer  
