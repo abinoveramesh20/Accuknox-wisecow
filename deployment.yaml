@@ -16,6 +16,5 @@ spec:
       - name: wisecow
         image: abinoveramesh/wisecow-image:latest
         ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 4499
+    targetPort: 80
+    - containerPort: 4499
