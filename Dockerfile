@@ -1,6 +1,9 @@
 # Use a lightweight base image
 FROM alpine:latest
 
+# Add the "community" repository
+RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
+
 # Install necessary packages
 RUN apk --no-cache add netcat-openbsd fortune cowsay
 
