@@ -1,27 +1,17 @@
-# Use a base image with Bash
+# Use Alpine Linux as the base image
 FROM alpine:latest
 
-# Install required packages
-RUN apk --no-cache add netcat-openbsd fortune cowsay
-
-# Set environment variables
-ENV SRVPORT=4499 \
-    RSPFILE=response
-
-# Remove existing response file and create a fifo
-RUN rm -f $RSPFILE && mkfifo $RSPFILE
-
-# Copy the Bash script into the container
-COPY wisecow.sh /wisecow.sh
-
-# Make the script executable
-RUN chmod +x /wisecow.sh
-
-# Expose the specified port
-EXPOSE $SRVPORT
-
 # Set the working directory
-WORKDIR /
+WORKDIR /wisecow
 
-# Run the script when the container starts
-CMD ["/bin/sh", "/wisecow.sh"]
+# Copy the application code into the container
+COPY . .
+
+# Install cowsay and fortune
+RUN apk add --no-cache cowsay fortune
+
+# Expose the port used by the application
+EXPOSE 4499
+
+# Define the entry point command
+CMD ["./wisecow.sh"]
