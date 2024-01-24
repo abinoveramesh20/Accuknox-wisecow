@@ -1,24 +1,27 @@
-# Use a base image with a minimal installation of Linux
-FROM alpine:latest
+# Use a base image with Bash
+FROM bash:latest
 
 # Install required packages
-RUN apk --no-cache add netcat-openbsd fortune \
-    && apk --no-cache add --virtual .build-deps curl \
-    && echo "https://dl-cdn.alpinelinux.org/alpine/edge/community/" >> /etc/apk/repositories \
-    && apk add --no-cache cowsay \
-    && apk del .build-deps
+RUN apk --no-cache add netcat-openbsd fortune cowsay
 
-# Set the working directory
-WORKDIR /app
+# Set environment variables
+ENV SRVPORT=4499 \
+    RSPFILE=response
 
-# Copy the script into the container
-COPY wisecow.sh /app/wisecow.sh
+# Remove existing response file and create a fifo
+RUN rm -f $RSPFILE && mkfifo $RSPFILE
+
+# Copy the Bash script into the container
+COPY wisecow.sh /wisecow.sh
 
 # Make the script executable
-RUN chmod +x /app/wisecow.sh
+RUN chmod +x /wisecow.sh
 
-# Expose the port that the application listens on
-EXPOSE 4499
+# Expose the specified port
+EXPOSE $SRVPORT
 
-# Run the application when the container starts
-CMD ["/app/wisecow.sh"]
+# Set the working directory
+WORKDIR /
+
+# Run the script when the container starts
+CMD ["/bin/bash", "/wisecow.sh"]
