@@ -15,6 +15,5 @@ spec:
       containers:
       - name: wisecow
         image: abinoveramesh/wisecow-image:latest
-        ports:
-    targetPort: 80
-    - containerPort: 4499
+     ports:
+        - containerPort: 4499
