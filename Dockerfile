@@ -2,9 +2,11 @@
 FROM alpine:latest
 
 # Install required packages
-RUN apk --no-cache add netcat-openbsd
-RUN apk --no-cache add fortune
-RUN apk --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/community/ add cowsay
+RUN apk --no-cache add netcat-openbsd fortune \
+    && apk --no-cache add --virtual .build-deps curl \
+    && curl -sSL https://github.com/tnalpgge/rankmirrors/raw/master/alpine3.13/main/mirrors.yaml -o /etc/apk/repositories \
+    && apk add --no-cache cowsay \
+    && apk del .build-deps
 
 # Set the working directory
 WORKDIR /app
