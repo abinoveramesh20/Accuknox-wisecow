@@ -7,8 +7,8 @@ WORKDIR /wisecow
 # Copy the application code into the container
 COPY . .
 
-# Install cowsay and fortune
-RUN apk add --no-cache cowsay fortune
+# Install perl and fortune
+RUN apk add --no-cache perl fortune
 
 # Expose the port used by the application
 EXPOSE 4499
