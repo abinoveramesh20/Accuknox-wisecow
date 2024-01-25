@@ -1,4 +1,5 @@
 Problem Statement 1:
+
 1. Executed the command sudo apt install fortune-mod cowsay -y to install necessary dependencies.
 
 2. Ran ./wisecow.sh to initiate the Wisecow application.
@@ -26,7 +27,9 @@ Problem Statement 1:
 
 9. Uploaded all required artifacts to the private GitHub repository. Access is granted only to GitHub IDs: nyrahul, SujithKasireddy, and divyansh-accuknox.
 
+-----------------------
 Problem Statement 2:
+
 1. Created a separate directory, "Problem Statement 2," to address specific requirements in the same repository.
 2. Utilized a System Health Monitoring Script and Log File Analyzer to fulfill project specifications.
 3. Successfully executed the System Health Monitoring Script (System_Health_Monitoring_Script.sh), showcasing CPU usage, memory usage, disk space usage, and running processes.
