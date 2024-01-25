@@ -27,6 +27,7 @@ jobs:
         docker push abinoveramesh/wisecow-image:latest
 
   deploy-to-kubernetes:
+  
     needs: build-and-push
     runs-on: ubuntu-latest
 
@@ -36,9 +37,13 @@ jobs:
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
+    - name: Set Kubernetes Config
+      run: echo "$KUBE_CONFIG_DATA" > kubeconfig.yaml
 
+    - name: Update Kubernetes Context
+      run: |
+        kubectl config use-context wisecow
     - name: Deploy to Kubernetes
-      run:  kubectl apply -f deployment.yaml --validate=false
-      env:
-        KUBE_CONFIG_DATA: $KUBE_CONFIG_DATA
+      run:  kubectl apply -f deployment.yaml
+
     
