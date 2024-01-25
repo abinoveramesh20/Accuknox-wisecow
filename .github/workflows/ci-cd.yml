@@ -32,9 +32,6 @@ jobs:
     needs: build-and-push
     runs-on: ubuntu-latest
 
-    env:
-      KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
@@ -43,8 +40,8 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-2
-    - name: Set Kubernetes Config
-      run: echo "$KUBE_CONFIG_DATA" > kubeconfig.yaml
+        aws-region: ap-south-1
+    - name: Update kube config
+      run: aws eks update-kubeconfig --name wisecow4
     - name: Deploy to Kubernetes
       run:  kubectl apply -f deployment.yaml --validate=false
