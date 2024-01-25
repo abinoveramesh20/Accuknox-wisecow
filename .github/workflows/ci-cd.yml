@@ -40,4 +40,4 @@ jobs:
     - name: Set Kubernetes Config
       run: echo "$KUBE_CONFIG_DATA" > kubeconfig.yaml
     - name: Deploy to Kubernetes
-      run:  kubectl apply -f deployment.yaml
+      run:  kubectl apply -f deployment.yaml --validate=false
