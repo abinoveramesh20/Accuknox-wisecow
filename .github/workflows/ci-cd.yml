@@ -44,4 +44,4 @@ jobs:
     - name: Update kube config
       run: aws eks update-kubeconfig --name wisecow4
     - name: Deploy to Kubernetes
-      run:  kubectl apply -f deployment.yaml --validate=false
+      run:  kubectl apply -f deployment.yaml -f service.yaml --validate=false
