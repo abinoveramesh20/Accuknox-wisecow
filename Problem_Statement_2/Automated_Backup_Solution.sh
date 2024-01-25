@@ -2,7 +2,7 @@
 
 # Configuration
 source_directory="/path/to/source/directory"  # Change this to the directory you want to backup
-remote_server="abinove1999@gmail.com:/home/ubuntu/Accuknox-wisecow/Problem_Statement_2/backups"  # Change this to your remote server details
+remote_server="abinove1999@gmail.com:/var/backups"  # Change this to your remote server details
 report_file="/home/ubuntu/Accuknox-wisecow/Problem_Statement_2/backups"  # Change this to the desired report file path
 
 # Check if the source directory exists
