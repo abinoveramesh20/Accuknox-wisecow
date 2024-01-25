@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      KUBE_CONFIG_DATA: ${{ env.KUBE_CONFIG_DATA }}
+      KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
 
     steps:
     - name: Checkout Repository
@@ -40,4 +40,5 @@ jobs:
     - name: Deploy to Kubernetes
       run: sudo kubectl apply -f deployment.yaml --validate=false
       env:
-        KUBE_CONFIG_DATA: $KUBE_CONFIG_DATA
+        KUBE_CONFIG_DATA: ${{ env.KUBE_CONFIG_DATA }} 
+        #$KUBE_CONFIG_DATA
