@@ -41,5 +41,3 @@ jobs:
       run: echo "$KUBE_CONFIG_DATA" > kubeconfig.yaml
     - name: Deploy to Kubernetes
       run:  kubectl apply -f deployment.yaml
-
-    
