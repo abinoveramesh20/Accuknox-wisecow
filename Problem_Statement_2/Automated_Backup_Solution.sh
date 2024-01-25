@@ -2,8 +2,8 @@
 
 # Configuration
 source_directory="/path/to/source/directory"  # Change this to the directory you want to backup
-remote_server="user@remote-server:/var/backups"  # Change this to your remote server details
-report_file="/path/to/backup_report.txt"  # Change this to the desired report file path
+remote_server="abinove1999@gmail.com:/home/ubuntu/Accuknox-wisecow/Problem_Statement_2/backups"  # Change this to your remote server details
+report_file="/home/ubuntu/Accuknox-wisecow/Problem_Statement_2/backups"  # Change this to the desired report file path
 
 # Check if the source directory exists
 if [ ! -d "$source_directory" ]; then
@@ -28,4 +28,3 @@ if [ $? -eq 0 ]; then
 else
     echo "Backup Failed. Report written to: $report_file"
 fi
-
