@@ -2,7 +2,7 @@
 
 # Configuration
 source_directory="/path/to/source/directory"  # Change this to the directory you want to backup
-remote_server="user@remote-server:/path/to/backup"  # Change this to your remote server details
+remote_server="user@remote-server:/var/backups"  # Change this to your remote server details
 report_file="/path/to/backup_report.txt"  # Change this to the desired report file path
 
 # Check if the source directory exists
