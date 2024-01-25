@@ -1,30 +1,35 @@
 #!/bin/bash
 
 # Configuration
-source_directory="/path/to/source/directory"  # Change this to the directory you want to backup
-remote_server="abinove1999@gmail.com:/var/backups"  # Change this to your remote server details
-report_file="/home/ubuntu/Accuknox-wisecow/Problem_Statement_2/backups"  # Change this to the desired report file path
+source_directory="/path/to/source/directory"
+destination_server="user@remote_server:/path/to/destination/directory"
+log_file="/path/to/log/backup_log.txt"
+
+# Function to log messages
+log_message() {
+    echo "$(date '+%Y-%m-%d %H:%M:%S') $1" >> "$log_file"
+}
 
 # Check if the source directory exists
 if [ ! -d "$source_directory" ]; then
-    echo "Error: Source directory not found at $source_directory"
+    log_message "Error: Source directory not found."
     exit 1
 fi
 
-# Check if the report file is writable
-if touch "$report_file"; then
-    echo "Backup Report" > "$report_file"
-else
-    echo "Error: Unable to write to the report file at $report_file"
+# Check if the destination server is reachable
+if ! ping -c 1 -W 1 "$(echo "$destination_server" | cut -d'@' -f2 | cut -d':' -f1)" > /dev/null; then
+    log_message "Error: Unable to reach the destination server."
     exit 1
 fi
 
-# Perform backup using rsync
-rsync -avz --delete "$source_directory" "$remote_server" >> "$report_file" 2>&1
+# Run rsync to perform the backup
+rsync -av --delete "$source_directory" "$destination_server" 2>&1 | tee -a "$log_file"
 
 # Check the exit status of rsync
-if [ $? -eq 0 ]; then
-    echo "Backup Successful. Report written to: $report_file"
+if [ ${PIPESTATUS[0]} -eq 0 ]; then
+    log_message "Backup successful."
+    exit 0
 else
-    echo "Backup Failed. Report written to: $report_file"
+    log_message "Error: Backup failed. Check the log for details."
+    exit 1
 fi
