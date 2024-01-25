@@ -1,0 +1,42 @@
+Problem Statement 1:
+1. Executed the command sudo apt install fortune-mod cowsay -y to install necessary dependencies.
+
+2. Ran ./wisecow.sh to initiate the Wisecow application.
+
+3. Checked the running status on port 4499.
+
+4. Configured security settings, opening required ports and configuring the firewall for seamless application execution.
+
+5. Dockerization:
+    ● Constructed a Dockerfile to create a container image for the Wisecow application.
+    ● Successfully tested the Docker container on port 4499.
+
+6. Kubernetes Deployment:
+    ● Installed Kubernetes and established clusters.
+    ● Developed deployment (deployment.sh) and service (service.sh) manifest files for deploying the Wisecow application.
+
+7. Continuous Integration and Deployment (CI/CD):
+    ● Implemented a CI/CD workflow (ci-cd.yml) within .git/workflows.
+    ● Automated the build and push of the Docker image to a container registry (docker hub) upon repository changes.
+    ● Achieved continuous deployment, automatically updating the application in the Kubernetes environment post successful image builds.
+
+8. TLS Implementation:
+    ● Encountered challenges in procuring TLS for infrastructure due to impending AWS account suspension.
+    ● Explored alternatives and attempted resolution; however, current limitations hinder TLS acquisition, potentially impacting system security and functionality.
+
+9. Uploaded all required artifacts to the private GitHub repository. Access is granted only to GitHub IDs: nyrahul, SujithKasireddy, and divyansh-accuknox.
+
+Problem Statement 2:
+1. Created a separate directory, "Problem Statement 2," to address specific requirements in the same repository.
+2. Utilized a System Health Monitoring Script and Log File Analyzer to fulfill project specifications.
+3. Successfully executed the System Health Monitoring Script (System_Health_Monitoring_Script.sh), showcasing CPU usage, memory usage, disk space usage, and running processes.
+4. Executed the Log File Analyzer Script (Log_File_Analyzer.sh), providing insights into total requests, 404 errors, top 10 requested pages, and top 10 requested IP addresses.
+   
+Repository status has been changed to private, with access granted to GitHub IDs: nyrahul, SujithKasireddy, and divyansh-accuknox for enhanced security and collaboration.
+
+
+
+
+
+
+
