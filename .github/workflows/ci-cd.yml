@@ -17,6 +17,7 @@ jobs:
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
+    
 
     - name: Login to Container Registry
       run:  docker login --username $REGISTRY_USERNAME --password "$REGISTRY_PASSWORD"
@@ -37,6 +38,12 @@ jobs:
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-2
     - name: Set Kubernetes Config
       run: echo "$KUBE_CONFIG_DATA" > kubeconfig.yaml
     - name: Deploy to Kubernetes
