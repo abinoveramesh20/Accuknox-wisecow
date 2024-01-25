@@ -41,4 +41,4 @@ jobs:
       run:  kubectl apply -f deployment.yaml --validate=false
       env:
         KUBE_CONFIG_DATA: ${{ env.KUBE_CONFIG_DATA }} 
-        #$KUBE_CONFIG_DATAA
+        #$KUBE_CONFIG_DATA
