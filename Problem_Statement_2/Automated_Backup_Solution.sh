@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Configuration
-source_directory="/path/to/source/directory"
-destination_server="user@remote_server:/path/to/destination/directory"
-log_file="/path/to/log/backup_log.txt"
+source_directory="/home/ubuntu/Accuknox-wisecow"
+destination_server="ubuntu@13.127.90.124:home/ubuntu/test"
+log_file="/home/ubuntu/backup_log.txt"
 
 # Function to log messages
 log_message() {
